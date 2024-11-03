@@ -12,7 +12,7 @@ function Row({isLargeRow,title,fetchUrl}) {
     }
     useEffect(()=>{
       fetchData()
-    },[fetchData])
+    },[fetchUrl])
 
     const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -21,7 +21,7 @@ function Row({isLargeRow,title,fetchUrl}) {
       <h2>{title}</h2>
       <div className='movies'>
 
-        
+
         {
           movies.map(movie=>(
             <img 
