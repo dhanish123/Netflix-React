@@ -3,23 +3,40 @@ import instance from '../baseUrl'
 import './Banner.css'
 
 
-function Banner({fetchUrl}) {
-    //movies state
-    const [movie,setMovies]=useState([])
-    async function fetchData(){
-      const result=  await instance.get(fetchUrl)
+// function Banner({fetchUrl}) {
+//     //movies state
+//     const [movie,setMovies]=useState([])
+//     async function fetchData(){
+//       const result=  await instance.get(fetchUrl)
+//       console.log(result.data.results);
+//       setMovies(result.data.results[
+//         Math.floor(Math.random()*result.data.results.length-1)
+//       ])
+//   }
+
+//     useEffect(()=>{
+//       fetchData()
+//     },[])
+//     const base_url = "https://image.tmdb.org/t/p/original/";
+
+//     console.log(movie);
+function Banner({ fetchUrl }) {
+  const [movie, setMovies] = useState([]);
+  const base_url = "https://image.tmdb.org/t/p/original/";
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await instance.get(fetchUrl);
       console.log(result.data.results);
-      setMovies(result.data.results[
-        Math.floor(Math.random()*result.data.results.length-1)
-      ])
-  }
+      setMovies(
+        result.data.results[
+          Math.floor(Math.random() * result.data.results.length - 1)
+        ]
+      );
+    }
 
-    useEffect(()=>{
-      fetchData()
-    },[])
-    const base_url = "https://image.tmdb.org/t/p/original/";
-
-    console.log(movie);
+    fetchData();
+  }, [fetchUrl]);
 
     function truncate(str,n){
       n=100;
